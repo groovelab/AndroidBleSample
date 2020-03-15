@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="androidx.core.content.ContextCompat" />
+        <variable
+            name="item"
+            type="asia.groovelab.blesample.model.Item" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="8dp">
+
+        <TextView
+            android:id="@+id/uuid_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            bind:text="@{item.uuid}"
+            android:textColor="@android:color/black"
+            android:textSize="16sp"
+            tools:text="1234-1234-1234-1234" />
+
+        <TextView
+            android:id="@+id/read_value_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@id/uuid_text_view"
+            android:layout_below="@id/readable_text_view"
+            android:textColor="@android:color/holo_red_dark"
+            android:textSize="14sp"
+            bind:text="@{item.readValue}"
+            tools:text="0x1234" />
+
+        <TextView
+            android:id="@+id/readable_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignBaseline="@id/uuid_text_view"
+            android:textColor="@{context.getColor(item.readableColorRes)}"
+            android:textSize="14sp"
+            android:text="@string/read" />
+
+        <TextView
+            android:id="@+id/writable_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/readable_text_view"
+            android:layout_alignEnd="@id/readable_text_view"
+            android:layout_marginTop="4dp"
+            android:textColor="@{context.getColor(item.writableColorRes)}"
+            android:textSize="14sp"
+            android:text="@string/write" />
+
+        <TextView
+            android:id="@+id/notifiable_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/writable_text_view"
+            android:layout_alignEnd="@id/writable_text_view"
+            android:layout_marginTop="4dp"
+            android:textColor="@{context.getColor(item.notifiableColorRes)}"
+            android:textSize="14sp"
+            android:text="@string/notify" />
+
+    </RelativeLayout>
+</layout>

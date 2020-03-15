@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="peripheral"
+            type="asia.groovelab.blesample.model.Peripheral" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/local_name_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            bind:text="@{peripheral.localName}"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
+            tools:text="LocalName" />
+
+        <TextView
+            android:id="@+id/rssi_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignBaseline="@id/local_name_text_view"
+            bind:text="@{peripheral.rssiString}"
+            android:textColor="@android:color/black"
+            android:textSize="14sp"
+            tools:text="-30dbm" />
+
+        <TextView
+            android:id="@+id/address_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/local_name_text_view"
+            android:layout_alignStart="@id/local_name_text_view"
+            android:layout_marginTop="4dp"
+            bind:text="@{peripheral.address}"
+            android:textColor="@android:color/black"
+            android:textSize="14sp"
+            tools:text="1234-1234-1234-1234" />
+
+        <TextView
+            android:id="@+id/service_uuid_label_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/address_text_view"
+            android:layout_alignStart="@id/address_text_view"
+            android:layout_marginTop="4dp"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="14sp"
+            android:text="@string/service_uuid" />
+
+        <TextView
+            android:id="@+id/service_uuid_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/service_uuid_label_text_view"
+            android:layout_toEndOf="@id/service_uuid_label_text_view"
+            android:layout_marginStart="4dp"
+            bind:text="@{peripheral.serviceUuid}"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="14sp"
+            tools:text="1234-1234-1234-1234" />
+    </RelativeLayout>
+</layout>

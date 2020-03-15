@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">BLE Sample</string>
+    <string name="central_title">Central</string>
+    <string name="peripheral_title">Peripheral</string>
+
+    <string name="central_button_title">Central</string>
+    <string name="peripheral_button_title">Peripheral</string>
+    <string name="advertise_button_title">Start advertise</string>
+    <string name="advertise_stop_button_title">Stop advertise</string>
+
+    <string name="scan">ReScan</string>
+    <string name="sort">Sort</string>
+    <string name="service_uuid">Service uuid:</string>
+    <string name="address">BD Address</string>
+    <string name="rssi">RSSI</string>
+    <string name="disconnect">Disconnect</string>
+    <string name="read">Read</string>
+    <string name="write">Write</string>
+    <string name="notify">Notify</string>
+    <string name="error_scan">failed to scan</string>
+    <string name="error_start_to_scan">can not start to scan</string>
+    <string name="connect_again">try to connect again</string>
+    <string name="disconnected">disconnected from peripheral</string>
+    <string name="advertise_service_uuid_title">Advertise service UUID</string>
+    <string name="service_uuid_title">Service UUID</string>
+    <string name="characteristic_uuid_title">Characteristic UUIDs</string>
+    <string name="characteristic_read">read</string>
+    <string name="characteristic_write">write</string>
+    <string name="characteristic_notify">notify</string>
+</resources>
