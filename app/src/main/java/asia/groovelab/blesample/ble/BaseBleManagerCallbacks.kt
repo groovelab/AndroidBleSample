@@ -5,51 +5,54 @@ import android.util.Log
 import no.nordicsemi.android.ble.BleManagerCallbacks
 
 interface BaseBleManagerCallbacks: BleManagerCallbacks {
+    companion object {
+        private const val TAG = "BaseBleManagerCallbacks"
+    }
     override fun onDeviceConnecting(device: BluetoothDevice) {
-        Log.d("SampleBleManagerCallbacks", "onDeviceConnecting")
+        Log.d(TAG, "onDeviceConnecting")
     }
 
     override fun onDeviceConnected(device: BluetoothDevice) {
-        Log.d("SampleBleManagerCallbacks", "onDeviceConnected")
+        Log.d(TAG, "onDeviceConnected")
     }
 
     override fun onDeviceDisconnecting(device: BluetoothDevice) {
-        Log.d("SampleBleManagerCallbacks", "onDeviceDisconnecting")
+        Log.d(TAG, "onDeviceDisconnecting")
     }
 
     override fun onDeviceDisconnected(device: BluetoothDevice) {
-        Log.d("SampleBleManagerCallbacks", "onDeviceDisconnected")
+        Log.d(TAG, "onDeviceDisconnected")
     }
 
     override fun onLinkLossOccurred(device: BluetoothDevice) {
-        Log.d("SampleBleManagerCallbacks", "onLinkLossOccurred")
+        Log.d(TAG, "onLinkLossOccurred")
     }
 
     override fun onServicesDiscovered(device: BluetoothDevice, optionalServicesFound: Boolean) {
-        Log.d("SampleBleManagerCallbacks", "onServicesDiscovered")
+        Log.d(TAG, "onServicesDiscovered")
     }
 
     override fun onDeviceReady(device: BluetoothDevice) {
-        Log.d("SampleBleManagerCallbacks", "onDeviceReady")
+        Log.d(TAG, "onDeviceReady")
     }
 
     override fun onBondingRequired(device: BluetoothDevice) {
-        Log.d("SampleBleManagerCallbacks", "onBondingRequired")
+        Log.d(TAG, "onBondingRequired")
     }
 
     override fun onBonded(device: BluetoothDevice) {
-        Log.d("SampleBleManagerCallbacks", "onBonded")
+        Log.d(TAG, "onBonded")
     }
 
     override fun onBondingFailed(device: BluetoothDevice) {
-        Log.d("SampleBleManagerCallbacks", "onBondingFailed")
+        Log.d(TAG, "onBondingFailed")
     }
 
     override fun onError(device: BluetoothDevice, message: String, errorCode: Int) {
-        Log.d("PeripheralViewModel", "onError ($errorCode) $message ")
+        Log.d(TAG, "onError ($errorCode) $message ")
     }
 
     override fun onDeviceNotSupported(device: BluetoothDevice) {
-        Log.d("SampleBleManagerCallbacks", "onDeviceNotSupported")
+        Log.d(TAG, "onDeviceNotSupported")
     }
 }
