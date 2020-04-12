@@ -5,10 +5,9 @@ import android.bluetooth.BluetoothGattCharacteristic
 import android.content.Context
 import android.util.Log
 import no.nordicsemi.android.ble.BleManager
-import no.nordicsemi.android.ble.BleManagerCallbacks
 import no.nordicsemi.android.ble.ValueChangedCallback
 
-class SampleConnectedBleManager(context: Context) : BleManager<BleManagerCallbacks>(context) {
+class SampleConnectedBleManager(context: Context) : BleManager(context) {
     companion object {
         private const val TAG = "SampleConnectedBleManager"
     }

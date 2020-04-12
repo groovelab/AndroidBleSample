@@ -5,12 +5,12 @@ import android.app.Application
 import android.bluetooth.BluetoothDevice
 import android.bluetooth.BluetoothGattCharacteristic
 import android.bluetooth.BluetoothGattService
-import android.util.Log
 import android.view.View
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import asia.groovelab.blesample.ble.BaseBleManagerCallbacks
+import asia.groovelab.blesample.ble.BaseBondingObserver
+import asia.groovelab.blesample.ble.BaseConnectionObserver
 import asia.groovelab.blesample.ble.SampleBleManager
 import asia.groovelab.blesample.extension.asHexData
 import asia.groovelab.blesample.extension.toHexString
@@ -26,7 +26,8 @@ class CentralPeripheralViewModel(val app: Application) : AndroidViewModel(app) {
     private var peripheral: Peripheral? = null
     private val bleManager: SampleBleManager by lazy {
         val manager = SampleBleManager(app)
-        manager.setManagerCallbacks(bleMangerCallbacks)
+        manager.setConnectionObserver(connectionObserver)
+        manager.setBondingObserver(bondingObserver)
         manager.discoveredServicesHandler = { onDiscoveredServices(it) }
         manager
     }
@@ -43,14 +44,14 @@ class CentralPeripheralViewModel(val app: Application) : AndroidViewModel(app) {
     var wroteCharacteristicHandler: ((UUID, ByteArray?) -> Unit)? = null
     var notifiedCharacteristicHandler: ((UUID, ByteArray?) -> Unit)? = null
 
-    private val bleMangerCallbacks = object: BaseBleManagerCallbacks {
+    private val connectionObserver = object: BaseConnectionObserver {
         override fun onDeviceReady(device: BluetoothDevice) {
             bleManager.readRssi {
                 rssi.postValue("${it}dbm")
             }
         }
 
-        override fun onDeviceDisconnected(device: BluetoothDevice) {
+        override fun onDeviceDisconnected(device: BluetoothDevice, reason: Int) {
             if (bleManager.isConnecting) {
                 peripheral?.bluetoothDevice?.let {
                     reconnected.postValue(true)
@@ -65,11 +66,8 @@ class CentralPeripheralViewModel(val app: Application) : AndroidViewModel(app) {
                 }
             }
         }
-
-        override fun onError(device: BluetoothDevice, message: String, errorCode: Int) {
-            Log.d("SampleBleManagerCallbacks", "onError ($errorCode) $message ")
-        }
     }
+    private val bondingObserver = object : BaseBondingObserver {}
 
     init {
         appTitle.value = ""

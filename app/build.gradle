@@ -44,5 +44,5 @@ dependencies {
 
     //  nordic ble
     implementation 'no.nordicsemi.android.support.v18:scanner:1.4.3'
-    implementation 'no.nordicsemi.android:ble:2.2.0-alpha06'
+    implementation 'no.nordicsemi.android:ble:2.2.0-beta01'
 }

@@ -66,6 +66,7 @@ class PeripheralViewModel(val app: Application) : AndroidViewModel(app) {
         }
     }
 
+    @Suppress("UNUSED_PARAMETER")
     fun onClickAdvertiseButton(view: View) {
         serverType = when (serverType) {
             ServerType.Advertise -> ServerType.None
