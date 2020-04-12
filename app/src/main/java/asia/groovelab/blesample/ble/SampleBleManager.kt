@@ -7,11 +7,10 @@ import android.bluetooth.BluetoothGattService
 import android.content.Context
 import android.util.Log
 import no.nordicsemi.android.ble.BleManager
-import no.nordicsemi.android.ble.BleManagerCallbacks
 import no.nordicsemi.android.ble.data.Data
 import java.time.Duration
 
-class SampleBleManager(context: Context) : BleManager<BleManagerCallbacks>(context) {
+class SampleBleManager(context: Context) : BleManager(context) {
     companion object {
         private val connectionTimeout = Duration.ofSeconds(10)
         private const val connectionRetryTime = 3

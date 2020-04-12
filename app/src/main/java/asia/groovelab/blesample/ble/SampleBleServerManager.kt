@@ -12,7 +12,7 @@ import android.os.ParcelUuid
 import android.util.Log
 import asia.groovelab.blesample.extension.asHexByteArray
 import no.nordicsemi.android.ble.BleServerManager
-import no.nordicsemi.android.ble.BleServerManagerCallbacks
+import no.nordicsemi.android.ble.observer.ServerObserver
 import java.util.*
 
 
@@ -50,8 +50,9 @@ class SampleBleServerManager(private val context: Context) : BleServerManager(co
         cccd())
     val gattService = service(serviceUUID, readCharacteristic, writeCharacteristic, notifyCharacteristic)
 
-    private val connectedMangerCallbacks = object: BaseBleManagerCallbacks {}
-    private val serverManagerCallbacks = object: BleServerManagerCallbacks {
+    private val connectionObserver = object: BaseConnectionObserver {}
+    private val bondingObserver = object: BaseBondingObserver {}
+    private val serverObserver = object: ServerObserver {
         override fun onDeviceConnectedToServer(device: BluetoothDevice) {
             setConnectedMangerToServer(device)
         }
@@ -72,7 +73,7 @@ class SampleBleServerManager(private val context: Context) : BleServerManager(co
         get() = BluetoothAdapter.getDefaultAdapter().bluetoothLeAdvertiser
 
     init {
-        setManagerCallbacks(serverManagerCallbacks)
+        setServerObserver(serverObserver)
     }
 
     override fun initializeServer() = listOf(gattService)
@@ -107,7 +108,8 @@ class SampleBleServerManager(private val context: Context) : BleServerManager(co
 
     private fun setConnectedMangerToServer(device: BluetoothDevice) {
         val connectedManager = SampleConnectedBleManager(context)
-        connectedManager.setManagerCallbacks(connectedMangerCallbacks)
+        connectedManager.setConnectionObserver(connectionObserver)
+        connectedManager.setBondingObserver(bondingObserver)
         connectedManager.useServer(this)
         connectedManager.withWriteCallback(writeCharacteristic)
             .with { _, data ->

@@ -20,10 +20,12 @@ class MainViewModel(val app: Application): AndroidViewModel(app) {
         mAction.value = Action.None
     }
 
+    @Suppress("UNUSED_PARAMETER")
     fun onClickCentralButton(view: View) {
         mAction.postValue(Action.Central)
     }
 
+    @Suppress("UNUSED_PARAMETER")
     fun onClickPeripheralButton(view: View) {
         mAction.postValue(Action.Peripheral)
     }
